@@ -4,7 +4,7 @@
 
 import urllib2
 import sys
-import os
+import os  
 import pymongo
 
 def getServerStatus():
@@ -12,10 +12,6 @@ def getServerStatus():
     port = 27017
     c = pymongo.MongoClient(host, port)
     return c.admin.command('serverStatus', workingSet=True)
-
-name = "documents"
-
-
 def doData():
     ss = getServerStatus()
     for k,v in ss["metrics"]["document"].iteritems():
@@ -35,8 +31,8 @@ def doConfig():
         print k + ".max 500000"
         print k + ".draw LINE1"
 
-if __name__ == "__main__":
-
+if __name__ == "__main__":          
+	
     from os import environ
     if 'HOST' in environ:
         host = environ['HOST']
@@ -46,7 +42,7 @@ if __name__ == "__main__":
         user = environ['USER']
     if 'PASSWORD' in environ:
         password = environ['PASSWORD']
-
+    
 if len(sys.argv) > 1 and sys.argv[1] == "config":
     doConfig()
 else:
