@@ -1,21 +1,3 @@
-#!/usr/bin/env python
-
-## GENERATED FILE - DO NOT EDIT
-
-import urllib2
-import sys
-import os
-import pymongo
-import re
-
-instance = ""
-
-def getServerStatus():
-    if 'MONGOURI' in os.environ:
-        c = pymongo.MongoClient(os.environ['MONGOURI'])
-    else:
-        c = pymongo.MongoClient()
-    return c.admin.command('serverStatus', workingSet=True)
 def doData():
     print "multigraph mongo_docs"+instance
     ss = getServerStatus()
@@ -35,12 +17,3 @@ def doConfig():
         print k + ".type COUNTER"
         print k + ".max 500000"
         print k + ".draw LINE1"
-
-m = re.search("mongo(_.*)_(.*)$", sys.argv[0])
-if (m):
-    instance = m.group(1)
-
-if len(sys.argv) > 1 and sys.argv[1] == "config":
-    doConfig()
-else:
-    doData()
