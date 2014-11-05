@@ -1,11 +1,12 @@
 
 import urllib2
 import sys
-import os  
+import os
 import pymongo
 
 def getServerStatus():
-    host = "127.0.0.1"
-    port = 27017
-    c = pymongo.MongoClient(host, port)
+    if 'MONGOURI' in os.environ:
+        c = pymongo.MongoClient(os.environ['MONGOURI'])
+    else:
+        c = pymongo.MongoClient()
     return c.admin.command('serverStatus', workingSet=True)
