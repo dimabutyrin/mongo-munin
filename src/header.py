@@ -3,6 +3,9 @@ import urllib2
 import sys
 import os  
 import pymongo
+import re
+
+instance = ""
 
 def getServerStatus():
     host = "127.0.0.1"
