@@ -1,3 +1,4 @@
+
 def doData():
     print "multigraph mongo_docs"+instance
     ss = getServerStatus()
